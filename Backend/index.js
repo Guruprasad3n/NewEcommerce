@@ -17,7 +17,7 @@ const PORT = process.env.PORT || 8080;
 
 // Routes
 
-app.use("/api/v1/user", authRoute);
+app.use("/api/v1/auth", authRoute);
 
 app.get("/", (req, res) => {
   res.send("Welcome to Home Page");
