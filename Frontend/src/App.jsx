@@ -1,14 +1,12 @@
 import React, { useState } from "react";
-import Navbar from "./Components/Layout/Navbar";
-import Layout from "./Components/Layout/Layout";
 import { Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home";
 import Contact from "./Pages/Contact";
 import About from "./Pages/About";
 import Policy from "./Pages/Policy";
+import Signup from "./Pages/Signup";
+import Login from "./Pages/Login";
 import PageNotFound from "./Pages/PageNotFound";
-import Signup from "./Pages/Signup.jsx";
-import Login from "./Pages/Login.jsx";
 
 // import './App.css'
 
