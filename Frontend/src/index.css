@@ -32,13 +32,47 @@
   background: linear-gradient(to right #434343 #000000);
   padding: 25px;
 }
-.footer a{
- text-decoration: none;
- color: white; 
- padding: 10px;
+.footer a {
+  text-decoration: none;
+  color: white;
+  padding: 10px;
 }
 
-.footer a:hover{
-color: wheat;
+.footer a:hover {
+  color: wheat;
   border-bottom: 1.5px solid white;
+}
+
+/* Page Not Found CSS */
+
+.pnf {
+  display: flex;
+  min-height: 65vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.pnf-title {
+  font-size: 100px;
+  font-weight: 700;
+}
+.pnf-heading {
+  font-weight: normal;
+}
+.pnf-btn {
+  color: black;
+  border: 1px solid black;
+  text-decoration: none;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+/* Contact Css */
+.contactus {
+  margin: 0;
+  padding: 0;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

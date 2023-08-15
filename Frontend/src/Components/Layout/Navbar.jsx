@@ -18,7 +18,7 @@ function Navbar() {
           <NavLink className="nav-link "  to="/catigory">Catigory</NavLink>
         </li>
         <li className="nav-item">
-          <NavLink className="nav-link" to="/register">Signup</NavLink>
+          <NavLink className="nav-link" to="/signup">Signup</NavLink>
         </li>
         <li className="nav-item">
           <NavLink className="nav-link" to="/login">Login</NavLink>
