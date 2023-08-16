@@ -24,9 +24,7 @@ export const registerController = async (req, res) => {
     // Check Existing User
     const existingUser = await userModel.findOne({ email: email });
     if (existingUser) {
-      res
-        .status(200)
-        .send({ success: false, message: "User Already Exist Please Login" });
+      return res.status(200).send({ success: false, message: "User Already Exist Please Login" });
     }
     const hashedPassword = await hashPassword(password);
     const user = await new userModel({
@@ -37,14 +35,14 @@ export const registerController = async (req, res) => {
       password: hashedPassword,
     });
     user.save();
-    res
+    return res
       .status(200)
       .send({ success: true, message: "User Register Successful", user });
-  } catch (e) {
-    console.log(e);
-    res
+  } catch (error) {
+    console.log(error);
+    return res
       .status(500)
-      .send({ success: false, message: "Error in Registaration", e });
+      .send({ success: false, message: "Error in Registaration", error });
   }
 };
 
@@ -76,7 +74,7 @@ export const loginController = async (req, res) => {
     const token = await jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "7d",
     });
-    res.status(200).send({
+    return res.status(200).send({
       success: true,
       message: "Login Success",
       user: {
@@ -87,12 +85,12 @@ export const loginController = async (req, res) => {
       },
       token,
     });
-  } catch (e) {
-    console.log(e);
-    res.status(500).send({
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send({
       success: false,
       message: "Login Failed You are getting Error",
-      e,
+      error,
     });
   }
 };
