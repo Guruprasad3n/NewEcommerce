@@ -40,32 +40,35 @@ function Login() {
       console.log("Response", res.data);
       if (res.data && res.data.success) {
         toast({
-          title: "Success",
-          description: res.data.message,
+          title: res.data.message,
+          // description: res.data.message,
           status: "success",
           duration: 3000,
           isClosable: true,
+          variant:"top-accent"
         });
         setAuth({ ...auth, user: res.data.user, token: res.data.token, });
         localStorage.setItem('auth', JSON.stringify(res.data))
         navigate("/");
       } else {
         toast({
-          title: "Error",
-          description: res.data.message,
+          title: res.data.message,
+          // description: res.data.message,
           status: "error",
           duration: 3000,
           isClosable: true,
+          variant:"left-accent"
         });
       }
     } catch (error) {
       console.log(error);
       toast({
         title: "Something Went Wrong",
-        description: "An error occurred while processing your request.",
+        // description: "An error occurred while processing your request.",
         status: "error",
         duration: 3000,
         isClosable: true,
+        variant:"subtle"
       });
     }
   };
