@@ -7,6 +7,7 @@ import Policy from "./Pages/Policy";
 import Signup from "./Pages/Signup";
 import Login from "./Pages/Login";
 import PageNotFound from "./Pages/PageNotFound";
+import Dashboard from "./Pages/User/Dashboard";
 
 // import './App.css'
 
@@ -15,6 +16,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/policy" element={<Policy />} />
