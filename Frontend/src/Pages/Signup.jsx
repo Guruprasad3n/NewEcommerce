@@ -40,7 +40,7 @@ function Signup() {
         { name, email, password, phone, address }
       );
       console.log("Response:", res.data); // Log the response data
-      if (res.data.success) {
+      if (res && res.data.success) {
         toast({
           title: "Success",
           description: res.data.message,
@@ -131,7 +131,7 @@ function Signup() {
             />
           </FormControl>
         </Container>
-        <Button onClick={handleSubmit} w="20%">
+        <Button onClick={handleSubmit} colorScheme="orange" w="20%">
           Signup
         </Button>
       </Flex>

@@ -24,7 +24,9 @@ export const registerController = async (req, res) => {
     // Check Existing User
     const existingUser = await userModel.findOne({ email: email });
     if (existingUser) {
-      return res.status(200).send({ success: false, message: "User Already Exist Please Login" });
+      return res
+        .status(200)
+        .send({ success: false, message: "User Already Exist Please Login" });
     }
     const hashedPassword = await hashPassword(password);
     const user = await new userModel({
@@ -68,7 +70,7 @@ export const loginController = async (req, res) => {
     if (!matchPassword) {
       return res
         .status(200)
-        .send({ success: false, message: "Invalid Password" });
+        .send({ success: false, message: "Invalid User I'd or Password" });
     }
     // JSON WEB TOKEN
     const token = await jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
