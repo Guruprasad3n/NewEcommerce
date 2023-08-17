@@ -8,6 +8,7 @@ import Signup from "./Pages/Signup";
 import Login from "./Pages/Login";
 import PageNotFound from "./Pages/PageNotFound";
 import Dashboard from "./Pages/User/Dashboard";
+import PrivateRoute from "./Components/Routes/PrivateRoute";
 
 // import './App.css'
 
@@ -16,7 +17,10 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={<PrivateRoute />}>
+          <Route path="" element={<Dashboard />} />
+        </Route>
+
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/policy" element={<Policy />} />

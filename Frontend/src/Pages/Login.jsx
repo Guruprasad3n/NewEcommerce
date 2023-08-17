@@ -10,7 +10,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/auth.jsx";
 
 function Login() {
@@ -18,6 +18,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const [auth, setAuth] = useAuth();
   const navigate = useNavigate();
+  const location = useLocation()
   const toast = useToast();
 
   const handleLogin = async () => {
@@ -49,7 +50,7 @@ function Login() {
         });
         setAuth({ ...auth, user: res.data.user, token: res.data.token, });
         localStorage.setItem('auth', JSON.stringify(res.data))
-        navigate("/");
+        navigate( location.state || "/");
       } else {
         toast({
           title: res.data.message,
