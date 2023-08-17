@@ -101,4 +101,8 @@ export const testController = (req, res) => {
   res.send("Protected Route");
 };
 
+export const userAuthController = (req, res) => {
+  res.status(200).send({ ok: true });
+};
+
 // export default { registerController };
