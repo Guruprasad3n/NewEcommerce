@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import React from "react";
-function AdminMenu() {
+function UserMenu() {
   return (
     <>
       <div className="text-center">
@@ -14,23 +14,23 @@ function AdminMenu() {
         </NavLink> */}
           <h4>Admin Panel</h4>
           <NavLink
-            to="/dashboard/admin/category"
+            to="/dashboard/user/profile"
             className="list-group-item list-group-item-action"
           >
-            Catigory
+            Profile
           </NavLink>
           <NavLink
-            to="/dashboard/admin/product"
+            to="/dashboard/user/orders"
             className="list-group-item list-group-item-action"
           >
-            Product
+            Orders
           </NavLink>
-          <NavLink
-            to="/dashboard/admin/users"
+          {/* <NavLink
+            to="/dashboard/user/users"
             className="list-group-item list-group-item-action"
           >
             Users
-          </NavLink>
+          </NavLink> */}
           {/* <NavLink
           className="list-group-item list-group-item-action disabled"
           aria-disabled="true"
@@ -42,4 +42,5 @@ function AdminMenu() {
     </>
   );
 }
-export default AdminMenu;
+
+export default UserMenu

@@ -15,6 +15,8 @@ import AdminDashboard from "./Pages/Admin/AdminDashboard";
 import Product from "./Pages/Admin/Product";
 import Category from "./Pages/Admin/Catigory";
 import Users from "./Pages/Admin/Users";
+import Orders from "./Pages/User/Orders";
+import Profile from "./Pages/User/Profile";
 
 // import './App.css'
 
@@ -25,6 +27,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/dashboard" element={<PrivateRoute />}>
           <Route path="user" element={<Dashboard />} />
+          <Route path="user/orders" element={<Orders />} />
+          <Route path="user/profile" element={<Profile />} />
+          {/* <Route path="user" element={<Dashboard />} /> */}
         </Route>
         <Route path="/dashboard" element={<AdminRoute />}>
           <Route path="admin" element={<AdminDashboard />} />
