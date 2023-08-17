@@ -20,6 +20,10 @@ const userSchema = new Schema(
       type: String,
       require: true,
     },
+    question: {
+      trype: String,
+      require: true,
+    },
     address: {
       type: String,
       require: true,
