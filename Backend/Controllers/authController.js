@@ -116,18 +116,18 @@ if(!newPassword){
   res.status(400).send({message:"New Password is required"})
 }
 // Check Data;
-const user = await userModel.fondOne({email, answer});
+const user = await userModel.findOne({email, answer});
 // validation
 if(!user){
-  res.status(404).send({success:false, message:"Wrong Email or Answer"})
+  return res.status(404).send({success:false, message:"Wrong Email or Answer"})
 }
 const hashed = await hashPassword(newPassword);
 await userModel.findByIdAndUpdate(user._id, {password:hashed})
-res.status(200).send({success:true, message:"Password Reset Success"})
+return res.status(200).send({success:true, message:"Password Reset Success"})
 
   } catch (error) {
     console.log(error);
-    res
+    return res
       .status(500)
       .send({ success: false, message: "Something Went Wrong", error });
   }

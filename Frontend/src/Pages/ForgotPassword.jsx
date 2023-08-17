@@ -56,7 +56,6 @@ function ForgotPassword() {
       console.log(error);
       toast({
         title: "Something Went Wrong",
-        // description: "An error occurred while processing your request.",
         status: "error",
         duration: 3000,
         isClosable: true,
