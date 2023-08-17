@@ -20,8 +20,8 @@ const userSchema = new Schema(
       type: String,
       require: true,
     },
-    question: {
-      trype: String,
+    answer: {
+      type: String,
       require: true,
     },
     address: {

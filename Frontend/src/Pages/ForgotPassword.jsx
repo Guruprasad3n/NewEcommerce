@@ -1,5 +1,5 @@
+import Layout from "../Components/Layout/Layout";
 import React, { useState } from "react";
-import Layout from "../Components/Layout/Layout.jsx";
 import {
   FormControl,
   FormLabel,
@@ -8,49 +8,40 @@ import {
   Button,
   Flex,
   useToast,
+  FormHelperText,
 } from "@chakra-ui/react";
 import axios from "axios";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useAuth } from "../Context/auth.jsx";
 
-function Login() {
+import { useNavigate } from "react-router-dom";
+
+function ForgotPassword() {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [auth, setAuth] = useAuth();
+  const [newPassword, setNewPassword] = useState("");
+  const [answer, setAnswer] = useState("");
+
   const navigate = useNavigate();
-  const location = useLocation()
   const toast = useToast();
 
-  const handleLogin = async () => {
+  const handleResetPassword = async () => {
     try {
-      // if (!email || !password) {
-      //   toast({
-      //     title: "Empty Fields",
-      //     description: "Please fill in all the fields.",
-      //     status: "warning",
-      //     duration: 3000,
-      //     isClosable: true,
-      //   });
-      //   return;
-      // }
-
-      const res = await axios.post("http://localhost:8000/api/v1/auth/login", {
-        email,
-        password,
-      });
+      const res = await axios.post(
+        "http://localhost:8000/api/v1/auth/forgot-password",
+        {
+          email,
+          newPassword,
+          answer,
+        }
+      );
       console.log("Response", res.data);
       if (res.data && res.data.success) {
         toast({
           title: res.data.message,
-          // description: res.data.message,
           status: "success",
           duration: 3000,
           isClosable: true,
-          variant:"top-accent"
+          variant: "top-accent",
         });
-        setAuth({ ...auth, user: res.data.user, token: res.data.token, });
-        localStorage.setItem('auth', JSON.stringify(res.data))
-        navigate( location.state || "/");
+        navigate("/");
       } else {
         toast({
           title: res.data.message,
@@ -58,7 +49,7 @@ function Login() {
           status: "error",
           duration: 3000,
           isClosable: true,
-          variant:"left-accent"
+          variant: "left-accent",
         });
       }
     } catch (error) {
@@ -69,21 +60,21 @@ function Login() {
         status: "error",
         duration: 3000,
         isClosable: true,
-        variant:"subtle"
+        variant: "subtle",
       });
     }
   };
 
   return (
     <>
-      <Layout title={"Login - Guru's Commerce"}>
+      <Layout title={"Forgot Password - Guru's Commerce"}>
         <Flex
           flexDirection={"column"}
           alignItems={"center"}
           gap={"15px"}
           justifyContent={"center"}
         >
-          <h1>Login</h1>
+          <h1>Reset Password</h1>
           <Container>
             <FormControl isRequired>
               <FormLabel>Email address</FormLabel>
@@ -95,25 +86,33 @@ function Login() {
               />
             </FormControl>
             <FormControl isRequired>
-              <FormLabel>Password</FormLabel>
+              <FormLabel>Best Freind Name</FormLabel>
               <Input
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                type="email"
+                value={answer}
+                onChange={(e) => setAnswer(e.target.value)}
+                type="text"
+                placeholder="Friend Name"
+              />
+              <FormHelperText>
+                Enter Your Security Answer -- Friend
+              </FormHelperText>
+            </FormControl>
+            <FormControl isRequired>
+              <FormLabel>New Password</FormLabel>
+              <Input
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                type="text"
                 placeholder="Password"
               />
             </FormControl>
           </Container>
-          <Button colorScheme="green" w="30%" onClick={()=>navigate("/forgot-password")}>
-            Forgot Password
+          <Button colorScheme="green" w="20%" onClick={handleResetPassword}>
+            Reset
           </Button>
-          <Button colorScheme="green" w="20%" onClick={handleLogin}>
-            Login
-          </Button>
-          
         </Flex>
       </Layout>
     </>
   );
 }
-export default Login;
+export default ForgotPassword;

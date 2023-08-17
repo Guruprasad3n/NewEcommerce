@@ -9,6 +9,7 @@ import {
   Button,
   Flex,
   useToast,
+  FormHelperText,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
@@ -18,13 +19,14 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
+  const [answer, setAnswer] = useState("");
   const navigate = useNavigate();
 
   const toast = useToast();
 
   const handleSubmit = async () => {
     try {
-      if (!name || !email || !password || !phone || !address) {
+      if (!name || !email || !password || !phone || !address || !answer) {
         toast({
           title: "Empty Fields",
           description: "Please fill in all the fields.",
@@ -37,7 +39,7 @@ function Signup() {
 
       const res = await axios.post(
         "http://localhost:8000/api/v1/auth/register",
-        { name, email, password, phone, address }
+        { name, email, password, phone, address, answer }
       );
       console.log("Response:", res.data); // Log the response data
       if (res && res.data.success) {
@@ -129,6 +131,17 @@ function Signup() {
               type="text"
               placeholder="Address"
             />
+          </FormControl>
+          <FormControl isRequired>
+            <FormLabel>Best Friend Name</FormLabel>
+            <Input
+              required
+              value={answer}
+              onChange={(e) => setAnswer(e.target.value)}
+              type="text"
+              placeholder="Friend Name"
+            />
+            <FormHelperText>Security Question</FormHelperText>
           </FormControl>
         </Container>
         <Button onClick={handleSubmit} colorScheme="orange" w="20%">

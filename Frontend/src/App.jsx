@@ -9,6 +9,7 @@ import Login from "./Pages/Login";
 import PageNotFound from "./Pages/PageNotFound";
 import Dashboard from "./Pages/User/Dashboard";
 import PrivateRoute from "./Components/Routes/PrivateRoute";
+import ForgotPassword from "./Pages/ForgotPassword";
 
 // import './App.css'
 
@@ -26,6 +27,7 @@ function App() {
         <Route path="/policy" element={<Policy />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </>
