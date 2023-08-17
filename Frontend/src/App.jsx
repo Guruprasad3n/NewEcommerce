@@ -10,6 +10,11 @@ import PageNotFound from "./Pages/PageNotFound";
 import Dashboard from "./Pages/User/Dashboard";
 import PrivateRoute from "./Components/Routes/PrivateRoute";
 import ForgotPassword from "./Pages/ForgotPassword";
+import AdminRoute from "./Components/Routes/AdminRoute";
+import AdminDashboard from "./Pages/Admin/AdminDashboard";
+import Product from "./Pages/Admin/Product";
+import Category from "./Pages/Admin/Catigory";
+import Users from "./Pages/Admin/Users";
 
 // import './App.css'
 
@@ -19,9 +24,14 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/dashboard" element={<PrivateRoute />}>
-          <Route path="" element={<Dashboard />} />
+          <Route path="user" element={<Dashboard />} />
         </Route>
-
+        <Route path="/dashboard" element={<AdminRoute />}>
+          <Route path="admin" element={<AdminDashboard />} />
+          <Route path="admin/category" element={<Category />} />
+          <Route path="admin/product" element={<Product />} />
+          <Route path="admin/users" element={<Users />} />
+        </Route>
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/policy" element={<Policy />} />

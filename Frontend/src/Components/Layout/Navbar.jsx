@@ -4,20 +4,21 @@ import { useAuth } from "../../Context/auth";
 import { useToast } from "@chakra-ui/react";
 function Navbar() {
   const [auth, setAuth] = useAuth();
-  const toast = useToast()
+  const toast = useToast();
   const handleLogout = () => {
     setAuth({
       ...auth,
-      user: null, token:""
+      user: null,
+      token: "",
     });
-    localStorage.removeItem('auth')
+    localStorage.removeItem("auth");
     toast({
       title: "Logout Success",
       // description: "You have Logged Out Succeffully",
       status: "success",
       duration: 3000,
       isClosable: true,
-    })
+    });
   };
   return (
     <>
@@ -64,10 +65,38 @@ function Navbar() {
                 </>
               ) : (
                 <>
-                  <li className="nav-item">
-                    <NavLink onClick={handleLogout} className="nav-link" to="/login">
-                      Logout
+                  <li className="nav-item dropdown">
+                    <NavLink
+                      className="nav-link dropdown-toggle"
+                      href="#"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      {auth?.user?.name}
                     </NavLink>
+                    <ul className="dropdown-menu">
+                      <li>
+                        <NavLink
+                          className="dropdown-item"
+                          to={`/dashboard/${
+                            auth?.user?.role === 1 ? "admin" : "user"
+                          }`}
+                        >
+                          Dashboard
+                        </NavLink>
+                      </li>
+
+                      <li className="dropdown-item">
+                        <NavLink
+                          onClick={handleLogout}
+                          className="nav-link"
+                          to="/login"
+                        >
+                          Logout
+                        </NavLink>
+                      </li>
+                    </ul>
                   </li>
                 </>
               )}

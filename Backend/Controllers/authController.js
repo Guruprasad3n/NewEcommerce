@@ -38,7 +38,7 @@ export const registerController = async (req, res) => {
       phone,
       address,
       password: hashedPassword,
-      answer
+      answer,
     });
     user.save();
     return res
@@ -88,6 +88,7 @@ export const loginController = async (req, res) => {
         email: user.email,
         phone: user.phone,
         address: user.address,
+        role: user.role,
       },
       token,
     });
@@ -105,26 +106,29 @@ export const loginController = async (req, res) => {
 
 export const forgotPasswordController = async (req, res) => {
   try {
-const {email, answer, newPassword} = req.body;
-if(!email){
-  res.status(400).send({message:"Email is required"})
-}
-if(!answer){
-  res.status(400).send({message:"Answer is required"})
-}
-if(!newPassword){
-  res.status(400).send({message:"New Password is required"})
-}
-// Check Data;
-const user = await userModel.findOne({email, answer});
-// validation
-if(!user){
-  return res.status(404).send({success:false, message:"Wrong Email or Answer"})
-}
-const hashed = await hashPassword(newPassword);
-await userModel.findByIdAndUpdate(user._id, {password:hashed})
-return res.status(200).send({success:true, message:"Password Reset Success"})
-
+    const { email, answer, newPassword } = req.body;
+    if (!email) {
+      res.status(400).send({ message: "Email is required" });
+    }
+    if (!answer) {
+      res.status(400).send({ message: "Answer is required" });
+    }
+    if (!newPassword) {
+      res.status(400).send({ message: "New Password is required" });
+    }
+    // Check Data;
+    const user = await userModel.findOne({ email, answer });
+    // validation
+    if (!user) {
+      return res
+        .status(404)
+        .send({ success: false, message: "Wrong Email or Answer" });
+    }
+    const hashed = await hashPassword(newPassword);
+    await userModel.findByIdAndUpdate(user._id, { password: hashed });
+    return res
+      .status(200)
+      .send({ success: true, message: "Password Reset Success" });
   } catch (error) {
     console.log(error);
     return res
@@ -138,6 +142,11 @@ export const testController = (req, res) => {
 };
 
 export const userAuthController = (req, res) => {
+  res.status(200).send({ ok: true });
+};
+
+// Admin Controller
+export const adminAuthController = (req, res) => {
   res.status(200).send({ ok: true });
 };
 

@@ -1,8 +1,8 @@
 import { Button, Container, Flex, Spinner, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-function SpinnerComponent() {
-  const [count, setCount] = useState(5);
+function SpinnerComponent({path ="login"}) {
+  const [count, setCount] = useState(3);
 
   const navigate = useNavigate();
   const location = useLocation()
@@ -10,9 +10,9 @@ function SpinnerComponent() {
     const intervel = setInterval(() => {
       setCount((prevValue) => --prevValue);
     }, 1000);
-    count === 0 && navigate("/login", {state : location.pathname});
+    count === 0 && navigate(`/${path}`, {state : location.pathname});
     return () => clearInterval(intervel);
-  }, [count, navigate, location]);
+  }, [count, navigate, location, path]);
 
   return (
     <>
