@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import connectDB from "./Config/db.js";
 import authRoute from "./Routes/authRoute.js";
+import categoryRoute from "./Routes/CategoryRoute.js";
 
 const app = express();
 app.use(cors());
@@ -21,6 +22,7 @@ const PORT = process.env.PORT || 8080;
 // Routes
 
 app.use("/api/v1/auth", authRoute);
+app.use("/api/v1/category", categoryRoute);
 
 app.get("/", (req, res) => {
   res.send("Welcome to Home Page");
