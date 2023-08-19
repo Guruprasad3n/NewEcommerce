@@ -33,3 +33,4 @@ app.listen(PORT, (req, res) => {
 });
 
 // http://localhost:8000/api/v1/auth
+// http://localhost:8000/api/v1/category
