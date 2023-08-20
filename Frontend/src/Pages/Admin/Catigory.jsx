@@ -16,8 +16,9 @@ function Category() {
         { name }
       );
       if (data?.success) {
+        // console.log(data.slug)
         toast({
-          title: `${data.name} is Created`,
+          title: `${name} is Created`,
           status: "success",
           duration: 3000,
           isClosable: true,
@@ -36,7 +37,7 @@ function Category() {
       console.log(error);
       toast({
         title: "Error",
-        description: "Something Went Wrong in FOrm",
+        description: "Something Went Wrong in Form",
       });
     }
   };
@@ -73,7 +74,11 @@ function Category() {
             <div className="col-md-9">
               <h1>Manage Category</h1>
               <div className="p-3">
-                <CategoryForm handleSubmit={handleSubmit} value={name} setValue={setName}  />
+                <CategoryForm
+                  handleSubmit={handleSubmit}
+                  value={name}
+                  setValue={setName}
+                />
               </div>
 
               <div className="w-75">
@@ -91,7 +96,10 @@ function Category() {
                           <tr>
                             <td key={e._id}>{e.name}</td>
                             <td>
-                              <button className="btn btn-primary">Edit</button>
+                              <button className="btn btn-primary ms-2">
+                                Edit
+                              </button>
+                            
                             </td>
                           </tr>
                         </>
