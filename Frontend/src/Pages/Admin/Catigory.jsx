@@ -73,7 +73,7 @@ function Category() {
             <div className="col-md-9">
               <h1>Manage Category</h1>
               <div className="p-3">
-                <CategoryForm />
+                <CategoryForm handleSubmit={handleSubmit} value={name} setValue={setName}  />
               </div>
 
               <div className="w-75">
