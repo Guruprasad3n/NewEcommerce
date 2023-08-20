@@ -99,7 +99,9 @@ function Category() {
                               <button className="btn btn-primary ms-2">
                                 Edit
                               </button>
-                            
+                              <button className="btn btn-danger ms-2">
+                                Delete
+                              </button>
                             </td>
                           </tr>
                         </>
