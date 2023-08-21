@@ -19,6 +19,8 @@ import CategoryForm from "../../Components/Form/CategoryForm";
 function Category() {
   // Modal
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [updatedCName, setUpdatedCName] = useState("");
+  const [selected, setSelected] = useState(null);
 
   const [categories, setCategories] = useState([]);
   const toast = useToast();
@@ -40,6 +42,7 @@ function Category() {
           isClosable: true,
           variant: "top-accent",
         });
+        getAllCategories();
       } else {
         toast({
           title: data.message,
@@ -79,9 +82,96 @@ function Category() {
   };
 
   useEffect(() => {
-    getAllCategories();
+    getAllCategories(categories);
   }, []);
-  console.log(categories);
+  // console.log(categories);
+
+  // Update Category Name
+  const handleUpdateCNameSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const { data } = await axios.put(
+        `http://localhost:8000/api/v1/category/update-category/${selected._id}`,
+        { name: updatedCName }
+      );
+
+      if (data.success) {
+        toast({
+          title: `${updatedCName} is Updated`,
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+          variant: "top-accent",
+        });
+        setSelected(null);
+        setUpdatedCName("");
+        onClose();
+        getAllCategories();
+      } else {
+        toast({
+          // title: "Error",
+          description: data.message,
+          status: error,
+          duration: 3000,
+          isClosable: true,
+          variant: "top-accent",
+        });
+      }
+      console.log(e);
+    } catch (error) {
+      console.log(error);
+      toast({
+        // title: "Error",
+        description: "Something Went Wrong in Update Category Name",
+        status: error,
+        duration: 3000,
+        isClosable: true,
+        variant: "top-accent",
+      });
+    }
+  };
+
+  // Delete Category
+  const handleDeleteCategory = async (id) => {
+    try {
+      const { data } = await axios.delete(
+        `http://localhost:8000/api/v1/category/delete-category/${id}`
+      );
+
+      if (data.success) {
+        toast({
+          title: `Category is Deleted`,
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+          variant: "top-accent",
+        });
+        // onClose();
+        getAllCategories();
+      } else {
+        toast({
+          // title: "Error",
+          description: data.message,
+          status: error,
+          duration: 3000,
+          isClosable: true,
+          variant: "top-accent",
+        });
+      }
+      // console.log(e);
+    } catch (error) {
+      console.log(error);
+      toast({
+        // title: "Error",
+        description: "Something Went Wrong in Update Category Name",
+        status: error,
+        duration: 3000,
+        isClosable: true,
+        variant: "top-accent",
+      });
+    }
+  };
 
   return (
     <>
@@ -112,22 +202,29 @@ function Category() {
                   <tbody>
                     {categories &&
                       categories?.map((e) => (
-                        <>
-                          <tr>
-                            <td key={e._id}>{e.name}</td>
-                            <td>
-                              <button
-                                className="btn btn-primary ms-2"
-                                onClick={onOpen}
-                              >
-                                Edit
-                              </button>
-                              <button className="btn btn-danger ms-2">
-                                Delete
-                              </button>
-                            </td>
-                          </tr>
-                        </>
+                        <tr key={e._id}>
+                          <td>{e.name}</td>
+                          <td>
+                            <button
+                              className="btn btn-primary ms-2"
+                              onClick={() => {
+                                onOpen();
+                                setUpdatedCName(e.name);
+                                setSelected(e);
+                              }}
+                            >
+                              Edit
+                            </button>
+                            <button
+                              className="btn btn-danger ms-2"
+                              onClick={() => {
+                                handleDeleteCategory(e._id);
+                              }}
+                            >
+                              Delete
+                            </button>
+                          </td>
+                        </tr>
                       ))}
                   </tbody>
                 </table>
@@ -143,18 +240,24 @@ function Category() {
                   <ModalHeader>Modal Title</ModalHeader>
                   <ModalCloseButton />
                   <ModalBody>
-                    <Text fontWeight="bold" mb="1rem">
+                    {/* <Text fontWeight="bold" mb="1rem">
                       You can scroll the content behind the modal
-                    </Text>
+                    </Text> */}
+                    <CategoryForm
+                      value={updatedCName}
+                      setValue={setUpdatedCName}
+                      handleSubmit={handleUpdateCNameSubmit}
+                    />
                     {/* <Lorem count={2} /> */}
                   </ModalBody>
 
-                  <ModalFooter>
-                    <Button colorScheme="blue" mr={3} onClick={onClose}>
+                  {/* <ModalFooter>
+                   <Button colorScheme="blue" mr={3} onClick={onClose}>
                       Close
                     </Button>
+                    
                     <Button variant="ghost">Secondary Action</Button>
-                  </ModalFooter>
+                  </ModalFooter> */}
                 </ModalContent>
               </Modal>
 
