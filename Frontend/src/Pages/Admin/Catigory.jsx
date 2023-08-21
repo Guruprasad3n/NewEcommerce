@@ -1,13 +1,29 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../../Components/Layout/Layout";
 import AdminMenu from "../../Components/Layout/AdminMenu";
-import { useToast } from "@chakra-ui/react";
+import {
+  Button,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  Text,
+  useDisclosure,
+  useToast,
+} from "@chakra-ui/react";
 import axios from "axios";
 import CategoryForm from "../../Components/Form/CategoryForm";
 function Category() {
+  // Modal
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   const [categories, setCategories] = useState([]);
   const toast = useToast();
   const [name, setName] = useState("");
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -36,8 +52,12 @@ function Category() {
     } catch (error) {
       console.log(error);
       toast({
-        title: "Error",
+        // title: "Error",
         description: "Something Went Wrong in Form",
+        status: error,
+        duration: 3000,
+        isClosable: true,
+        variant: "top-accent",
       });
     }
   };
@@ -73,7 +93,7 @@ function Category() {
             </div>
             <div className="col-md-9">
               <h1>Manage Category</h1>
-              <div className="p-3">
+              <div className="p-3 w-50">
                 <CategoryForm
                   handleSubmit={handleSubmit}
                   value={name}
@@ -96,7 +116,10 @@ function Category() {
                           <tr>
                             <td key={e._id}>{e.name}</td>
                             <td>
-                              <button className="btn btn-primary ms-2">
+                              <button
+                                className="btn btn-primary ms-2"
+                                onClick={onOpen}
+                              >
                                 Edit
                               </button>
                               <button className="btn btn-danger ms-2">
@@ -109,6 +132,33 @@ function Category() {
                   </tbody>
                 </table>
               </div>
+              {/* Modal */}
+              <Modal
+                blockScrollOnMount={false}
+                isOpen={isOpen}
+                onClose={onClose}
+              >
+                <ModalOverlay />
+                <ModalContent>
+                  <ModalHeader>Modal Title</ModalHeader>
+                  <ModalCloseButton />
+                  <ModalBody>
+                    <Text fontWeight="bold" mb="1rem">
+                      You can scroll the content behind the modal
+                    </Text>
+                    {/* <Lorem count={2} /> */}
+                  </ModalBody>
+
+                  <ModalFooter>
+                    <Button colorScheme="blue" mr={3} onClick={onClose}>
+                      Close
+                    </Button>
+                    <Button variant="ghost">Secondary Action</Button>
+                  </ModalFooter>
+                </ModalContent>
+              </Modal>
+
+              {/* Modal */}
             </div>
           </div>
         </div>
