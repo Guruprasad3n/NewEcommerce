@@ -28,6 +28,16 @@ function Category() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!name) {
+      toast({
+        title: `Please Enter Valid Category Name`,
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+        variant: "top-accent",
+      });
+      return;
+    }
     try {
       const { data } = await axios.post(
         "http://localhost:8000/api/v1/category/create-category",
@@ -70,8 +80,8 @@ function Category() {
       const { data } = await axios.get(
         "http://localhost:8000/api/v1/category/get-all-category"
       );
-      if (data.success) {
-        setCategories(data.category);
+      if (data?.success) {
+        setCategories(data?.category);
       }
     } catch (error) {
       console.log(error);
