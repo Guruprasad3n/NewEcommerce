@@ -1,12 +1,17 @@
-import router from 'express'
-import { createProductController } from '../Controllers/ProductController'
-import { isAdmin, requireSignIn } from '../Middlewares/authMiddleware'
-const router = express.Router()
+import router from "express";
+import { createProductController } from "../Controllers/ProductController";
+import { isAdmin, requireSignIn } from "../Middlewares/authMiddleware";
 
-router.post("", isAdmin, requireSignIn,  createProductController)
+import formidable from "express-formidable";
 
+const router = express.Router();
 
+router.post(
+  "/create-product",
+  isAdmin,
+  requireSignIn,
+  formidable(),
+  createProductController
+);
 
-
-
-export default router
+export default router;
