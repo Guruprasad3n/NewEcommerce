@@ -23,6 +23,7 @@ export const createProductController = async (req, res) => {
           .status(500)
           .send({ message: "Photo is Required and Should be Less Then 1MB" });
     }
+    // 
 const products = new productModal({...req.fields, slug: slugify(name)});
 if(photo){
     products.photo.data = fs.readFileSync(photo.path)
