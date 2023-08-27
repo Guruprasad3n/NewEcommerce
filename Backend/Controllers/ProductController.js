@@ -63,4 +63,16 @@ export const getAllProductsController = async (req, res) => {
   }
 };
 
+export const getSingleProductsController =async(req, res)=>{
+  try{
 
+    const product = await productModal.findOne({slig:req.params.slug});
+    req.status
+
+
+  }catch(error){
+    console.log(error)
+    res.status(500).send({success:false, message:"Error in Single Product", error})
+  }
+
+}
