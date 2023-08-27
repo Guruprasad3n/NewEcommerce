@@ -85,3 +85,19 @@ export const getSingleProductsController = async (req, res) => {
       .send({ success: false, message: "Error in Single Product", error });
   }
 };
+
+// Photo Product COntroller
+export const getProductPhotoContorller = async (req, res) => {
+  try {
+    const photo = await productModal.findById(req.params.id).select("photo");
+    if (photo.photo.data) {
+      res.set("Content-Type", photo.photo.contentType);
+      return res.status(200).send(photo.photo.data);
+    }
+  } catch (error) {
+    console.log(error);
+    res
+      .status(500)
+      .send({ success: false, message: "Getting Photo Error", error });
+  }
+};
