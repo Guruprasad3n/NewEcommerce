@@ -25,19 +25,17 @@ export const createProductController = async (req, res) => {
           .send({ message: "Photo is Required and Should be Less Then 1MB" });
     }
     //
-    const products = new productModal({ ...req.fields, slug:slugify(name) });
+    const products = new productModal({ ...req.fields, slug: slugify(name) });
     if (photo) {
       products.photo.data = fs.readFileSync(photo.path);
       products.photo.contentType = photo.type;
     }
     await products.save();
-    res
-      .status(201)
-      .send({
-        success: true,
-        message: "Product Created Successfull",
-        products,
-      });
+    res.status(201).send({
+      success: true,
+      message: "Product Created Successfull",
+      products,
+    });
   } catch (error) {
     console.log(error);
     res
@@ -45,3 +43,24 @@ export const createProductController = async (req, res) => {
       .send({ status: false, message: "Error While Creating Product", error });
   }
 };
+
+// Get All Products
+export const getAllProductsController = async (req, res) => {
+  try {
+    const products = await productModal
+      .find({})
+      .select("-photo")
+      .limit(12)
+      .sort({ createdAt: -1 });
+    res
+      .status(200)
+      .send({ success: true, message: "Get All Products Success", products, totalCount:products.length });
+  } catch (error) {
+    console.log(error);
+    res
+      .status(500)
+      .send({ success: false, message: "Error in Get All Products" });
+  }
+};
+
+
