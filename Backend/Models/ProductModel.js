@@ -1,43 +1,87 @@
-import mongoose, { Schema, modal } from "mongoose";
+// import mongoose,{ Schema, model } from "mongoose";
 
-const productSchame = new Schema(
+// const productSchame = new Schema(
+//   {
+//     name: {
+//       type: String,
+//       require: true,
+//     },
+//     slug: {
+//       type: String,
+//       require: true,
+//     },
+//     description: {
+//       type: String,
+//       require: true,
+//     },
+//     price: {
+//       type: Number,
+//       require: true,
+//     },
+//     category: {
+//       type: mongoose.ObjectId,
+//       ref: "Category",
+//       require: true,
+//     },
+//     quantity: {
+//       type: Number,
+//       require: true,
+//     },
+//     photo: {
+//       data: Buffer,
+//       contentType: String,
+//       require: true,
+//     },
+//     shipping: {
+//       type: Boolean,
+//     },
+//   },
+//   { timestamps: true }
+// );
+
+// const productModel = model("Products", productSchame);
+// export default productModel;
+
+
+import mongoose from "mongoose";
+
+const productSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      require: true,
+      required: true,
     },
     slug: {
       type: String,
-      require: true,
+      required: true,
     },
     description: {
       type: String,
-      require: true,
+      required: true,
     },
     price: {
       type: Number,
-      require: true,
+      required: true,
     },
     category: {
       type: mongoose.ObjectId,
       ref: "Category",
-      require: true,
+      required: true,
     },
     quantity: {
       type: Number,
-      require: true,
+      required: true,
     },
     photo: {
       data: Buffer,
       contentType: String,
-      require: true,
     },
     shipping: {
+
       type: Boolean,
     },
   },
   { timestamps: true }
 );
 
-const productModal = modal("Products", productSchame);
-export default productModal;
+export default mongoose.model("Products", productSchema);

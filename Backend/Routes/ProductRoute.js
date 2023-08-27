@@ -1,6 +1,6 @@
-import router from "express";
-import { createProductController } from "../Controllers/ProductController";
-import { isAdmin, requireSignIn } from "../Middlewares/authMiddleware";
+import express from "express";
+import { createProductController } from "../Controllers/ProductController.js";
+import { isAdmin, requireSignIn } from "../Middlewares/authMiddleware.js";
 
 import formidable from "express-formidable";
 

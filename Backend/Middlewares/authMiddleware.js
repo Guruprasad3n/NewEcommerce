@@ -10,7 +10,8 @@ export const requireSignIn = async (req, res, next) => {
     req.user = decode;;
     next();
   } catch (e) {
-    console.log(e);
+    console.log(e, "Expaired");
+    return res.status(500).send({success:false, message:"Error in Admin Signin Or JWT Expaired"})
   }
 };
 
@@ -28,7 +29,7 @@ export const isAdmin = async (req, res, next) => {
     }
   } catch (e) {
     console.log(e);
-    res
+   return res
       .status(401)
       .send({ success: false, message: "Error in Admin Middleware" });
   }
