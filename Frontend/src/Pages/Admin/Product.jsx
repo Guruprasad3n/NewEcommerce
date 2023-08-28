@@ -52,7 +52,9 @@ const toast = useToast()
           <div className="col-md-3">
             <AdminMenu />
           </div>
-          <div className="col-md-9">Prodct</div>
+          <div className="col-md-9">
+            <h1>Create Product</h1>
+          </div>
         </div>
         </div>
         </Layout>

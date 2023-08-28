@@ -247,7 +247,7 @@ function Category() {
               >
                 <ModalOverlay />
                 <ModalContent>
-                  <ModalHeader>Modal Title</ModalHeader>
+                  <ModalHeader>Update Category Name</ModalHeader>
                   <ModalCloseButton />
                   <ModalBody>
                     {/* <Text fontWeight="bold" mb="1rem">
