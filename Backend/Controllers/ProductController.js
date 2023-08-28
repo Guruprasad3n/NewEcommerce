@@ -101,3 +101,21 @@ export const getProductPhotoContorller = async (req, res) => {
       .send({ success: false, message: "Getting Photo Error", error });
   }
 };
+
+export const deleteProductController = async (req, res) => {
+  try {
+    const productDelete = await productModal
+      .findByIdAndDelete(req.params.id)
+      .select("-photo");
+    return res.status(200).send({
+      success: true,
+      message: "Delete Product Success",
+      productDelete,
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .send({ success: false, message: "Error in Delete Product" });
+  }
+};
