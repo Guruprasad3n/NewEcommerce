@@ -74,7 +74,18 @@ function Product() {
                     </option>
                   ))}
                 </Select>
-                
+                <div className="mb-3">
+                  <label className="btn btn-outline-secondary col-md-12">
+                    {photo ? photo.name : "Upload Photo"}
+                    <input
+                      type="file"
+                      name="photo"
+                      accept="image/*"
+                      onChange={(e) => setPhoto(e.target.files[0])}
+                      hidden
+                    />
+                  </label>
+                </div>
                 <div className="mb-3">
                   {photo && (
                     <div className="text-center">
