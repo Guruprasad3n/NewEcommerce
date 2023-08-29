@@ -1,30 +1,30 @@
-import React, { useState } from 'react'
-import Layout from '../../Components/Layout/Layout'
-import AdminMenu from '../../Components/Layout/AdminMenu'
-import axios from 'axios'
-import { useToast } from '@chakra-ui/react'
-function Product(){
-  const [categories, setCategories] = useState([])
-  const[photo, setPhoto] = useState("")
-  const[name, setName] = useState("")
-  const[price, setPrice] = useState("")
-  const[quantity, setQuantity] = useState("")
-  const[shipping, setShipping] = useState("")
-  const[description, setDescription] = useState("")
+import React, { useEffect, useState } from "react";
+import Layout from "../../Components/Layout/Layout";
+import AdminMenu from "../../Components/Layout/AdminMenu";
+import axios from "axios";
+import { Button, Select, useToast } from "@chakra-ui/react";
+function Product() {
+  const [categories, setCategories] = useState([]);
+  const [photo, setPhoto] = useState("");
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [shipping, setShipping] = useState("");
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("");
   // const[photo, setPhoto] = useState("")
 
-const toast = useToast()
+  const toast = useToast();
 
-// toast({
-//   title: `${updatedCName} is Updated`,
-//   status: "success",
-//   duration: 3000,
-//   isClosable: true,
-//   variant: "top-accent",
-// });
+  // toast({
+  //   title: `${updatedCName} is Updated`,
+  //   status: "success",
+  //   duration: 3000,
+  //   isClosable: true,
+  //   variant: "top-accent",
+  // });
 
-
-// Get All Categories Copied From Category.jsx
+  // Get All Categories Copied From Category.jsx
   const getAllCategories = async () => {
     try {
       const { data } = await axios.get(
@@ -40,25 +40,99 @@ const toast = useToast()
       });
     }
   };
+  useEffect(() => {
+    getAllCategories();
+  }, []);
 
+  const handleCreateProduct = async (e) => {};
 
-
-
-    return(
-        <>
-        <Layout title={"Dashboard - Create Product"}>
+  console.log(categories);
+  return (
+    <>
+      <Layout title={"Dashboard - Create Product"}>
         <div className="container-fluid m-3 p-3">
-        <div className="row">
-          <div className="col-md-3">
-            <AdminMenu />
-          </div>
-          <div className="col-md-9">
-            <h1>Create Product</h1>
+          <div className="row">
+            <div className="col-md-3">
+              <AdminMenu />
+            </div>
+            <div className="col-md-9">
+              <h1>Create Product</h1>
+              <div className="m-1 w-75">
+                
+                <div className="mb-3">
+                  {photo && (
+                    <div className="text-center">
+                      <img
+                        src={URL.createObjectURL(photo)}
+                        alt="product_photo"
+                        height={"200px"}
+                        className="img img-responsive"
+                      />
+                    </div>
+                  )}
+                </div>
+
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    value={name}
+                    placeholder="write a name"
+                    className="form-control"
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </div>
+                <div className="mb-3">
+                  <textarea
+                    type="text"
+                    value={description}
+                    placeholder="write a description"
+                    className="form-control"
+                    onChange={(e) => setDescription(e.target.value)}
+                  />
+                </div>
+
+                <div className="mb-3">
+                  <input
+                    type="number"
+                    value={price}
+                    placeholder="write a Price"
+                    className="form-control"
+                    onChange={(e) => setPrice(e.target.value)}
+                  />
+                </div>
+                <div className="mb-3">
+                  <input
+                    type="number"
+                    value={quantity}
+                    placeholder="write a quantity"
+                    className="form-control"
+                    onChange={(e) => setQuantity(e.target.value)}
+                  />
+                </div>
+                <div className="mb-3">
+                  <Select
+                    bordered={false}
+                    placeholder="Select Shipping "
+                    size="large"
+                    showSearch
+                    className="form-select mb-3"
+                    onChange={(value) => {
+                      setShipping(value);
+                    }}
+                  >
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                  </Select>
+                </div>
+                <div className="mb-3">
+                  <Button onClick={handleCreateProduct}>Create Product</Button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        </div>
-        </Layout>
-        </>
-    )
+      </Layout>
+    </>
+  );
 }
-export default Product
+export default Product;
