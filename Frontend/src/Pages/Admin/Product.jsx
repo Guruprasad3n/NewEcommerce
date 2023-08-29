@@ -58,6 +58,22 @@ function Product() {
             <div className="col-md-9">
               <h1>Create Product</h1>
               <div className="m-1 w-75">
+                <Select
+                  outline={"none"}
+                  // isSearchable
+                  // showSearch
+                  // defaultValue={options[0].value}
+                  // value={state}
+                  // options={options}
+                  placeholder="Select a Category"
+                  onChange={(e) => setCategory(e.target.value)}
+                >
+                  {categories.map((e) => (
+                    <option key={e._id} value={e.name}>
+                      {e.name}
+                    </option>
+                  ))}
+                </Select>
                 
                 <div className="mb-3">
                   {photo && (
