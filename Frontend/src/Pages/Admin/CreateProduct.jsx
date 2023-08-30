@@ -4,7 +4,7 @@ import AdminMenu from "../../Components/Layout/AdminMenu";
 import axios from "axios";
 import { Button, Select, useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-function Product() {
+function CreateProduct() {
   const [categories, setCategories] = useState([]);
   const [photo, setPhoto] = useState("");
   const [name, setName] = useState("");
@@ -207,4 +207,4 @@ function Product() {
     </>
   );
 }
-export default Product;
+export default CreateProduct;
