@@ -58,8 +58,7 @@ function CreateProduct() {
       // productData.append('name', name)
       const { data } = await axios.post(
         `http://localhost:8000/api/v1/product/create-product`,
-        productData,
-       
+        productData
       );
       if (data?.success) {
         toast({
