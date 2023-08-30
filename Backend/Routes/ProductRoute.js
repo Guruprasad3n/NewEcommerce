@@ -15,8 +15,8 @@ const router = express.Router();
 
 router.post(
   "/create-product",
-  isAdmin,
   requireSignIn,
+  isAdmin,
   formidable(),
   createProductController
 );

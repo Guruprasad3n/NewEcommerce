@@ -58,14 +58,17 @@ function Product() {
       // productData.append('name', name)
       const { data } = await axios.post(
         `http://localhost:8000/api/v1/product/create-product`,
-        productData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
+        productData
       );
       if (data?.success) {
+        toast({
+          title: `${data?.message}`,
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+          variant: "top-accent",
+        });
+      } else {
         toast({
           title: `Product Created Success`,
           status: "success",
@@ -74,14 +77,6 @@ function Product() {
           variant: "top-accent",
         });
         navigate("/dashboard/admin/products");
-      } else {
-        toast({
-          title: `${data?.message}`,
-          status: "success",
-          duration: 3000,
-          isClosable: true,
-          variant: "top-accent",
-        });
       }
     } catch (error) {
       console.log(error);
