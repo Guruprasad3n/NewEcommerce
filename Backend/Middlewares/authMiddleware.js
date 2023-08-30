@@ -19,20 +19,7 @@ export const requireSignIn = async (req, res, next) => {
 
 export const isAdmin = async (req, res, next) => {
   try {
-    // const user = await userModel.findById(req.user._id);
-    // if (!req.user || !req.user._id) {
-    //   return res
-    //     .status(401)
-    //     .send({ success: false, message: "User not authenticated" });
-    // }
-
     const user = await userModel.findById(req.user._id);
-
-    // if (!user) {
-    //   return res
-    //     .status(401)
-    //     .send({ success: false, message: "User not found" });
-    // }
     if (user.role !== 1) {
       return res
         .status(401)
