@@ -58,7 +58,12 @@ function Product() {
       // productData.append('name', name)
       const { data } = await axios.post(
         `http://localhost:8000/api/v1/product/create-product`,
-        productData
+        productData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
       if (data?.success) {
         toast({
@@ -113,7 +118,7 @@ function Product() {
                   onChange={(e) => setCategory(e.target.value)}
                 >
                   {categories.map((e) => (
-                    <option key={e._id} value={e.name}>
+                    <option key={e._id} value={e._id}>
                       {e.name}
                     </option>
                   ))}
@@ -182,10 +187,10 @@ function Product() {
                 </div>
                 <div className="mb-3">
                   <Select
-                    bordered={false}
+                    // bordered={false}
                     placeholder="Select Shipping "
                     size="large"
-                    showSearch
+                    // showSearch
                     className="form-select mb-3"
                     onChange={(value) => {
                       setShipping(value);

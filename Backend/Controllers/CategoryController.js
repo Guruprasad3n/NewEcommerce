@@ -54,13 +54,11 @@ export const updateCategoryController = async (req, res) => {
 export const allCategoryController = async (req, res) => {
   try {
     const category = await categoryModel.find({});
-    return res
-      .status(200)
-      .send({
-        success: true,
-        message: "All Category List Success Showing",
-        category,
-      });
+    return res.status(200).send({
+      success: true,
+      message: "All Category List Success Showing",
+      category,
+    });
   } catch (error) {
     console.log(error);
     return res.status(500).send({
@@ -77,13 +75,11 @@ export const singleCategoryController = async (req, res) => {
   try {
     // const {slug} = req.params;
     const category = await categoryModel.findOne({ slug: req.params.slug });
-    return res
-      .status(200)
-      .send({
-        success: true,
-        message: "Get Single Category Success",
-        category,
-      });
+    return res.status(200).send({
+      success: true,
+      message: "Get Single Category Success",
+      category,
+    });
   } catch (error) {
     console.log(error);
     return res
@@ -92,18 +88,20 @@ export const singleCategoryController = async (req, res) => {
   }
 };
 // Delete Category Controller
-export const deleteCategoryController =async(req, res)=>{
-
-try{
-
-const {id} = req.params;
-const deleteCate = await categoryModel.findByIdAndDelete(id);
-return res.status(200).send({success:true, message:"Category Deleted Successfully", deleteCate})
-
-}
-catch(error){
-    console.log(error)
-    return res.status(500).send({success:false, message:"Error While Deleting Category", error})
-}
-
-}
+export const deleteCategoryController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deleteCate = await categoryModel.findByIdAndDelete(id);
+    return res.status(200).send({
+      success: true,
+      message: "Category Deleted Successfully",
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send({
+      success: false,
+      message: "Error While Deleting Category",
+      error,
+    });
+  }
+};
