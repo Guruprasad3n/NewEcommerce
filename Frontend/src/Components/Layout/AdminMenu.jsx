@@ -17,10 +17,16 @@ function AdminMenu() {
             to="/dashboard/admin/category"
             className="list-group-item list-group-item-action"
           >
-            Catigory
+            Create Catigory
           </NavLink>
           <NavLink
-            to="/dashboard/admin/product"
+            to="/dashboard/admin/createproduct"
+            className="list-group-item list-group-item-action"
+          >
+            Create Product
+          </NavLink>
+          <NavLink
+            to="/dashboard/admin/products"
             className="list-group-item list-group-item-action"
           >
             Product
