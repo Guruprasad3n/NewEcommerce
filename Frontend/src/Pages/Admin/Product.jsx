@@ -3,6 +3,7 @@ import Layout from "../../Components/Layout/Layout";
 import AdminMenu from "../../Components/Layout/AdminMenu";
 import axios from "axios";
 import { Button, Select, useToast } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 function Product() {
   const [categories, setCategories] = useState([]);
   const [photo, setPhoto] = useState("");
@@ -15,6 +16,7 @@ function Product() {
   // const[photo, setPhoto] = useState("")
 
   const toast = useToast();
+  const navigate = useNavigate();
 
   // toast({
   //   title: `${updatedCName} is Updated`,
@@ -44,7 +46,49 @@ function Product() {
     getAllCategories();
   }, []);
 
-  const handleCreateProduct = async (e) => {};
+  const handleCreateProduct = async (e) => {
+    try {
+      const productData = new FormData();
+      productData.append("name", name);
+      productData.append("price", price);
+      productData.append("description", description);
+      productData.append("quantity", quantity);
+      productData.append("category", category);
+      productData.append("photo", photo);
+      // productData.append('name', name)
+      const { data } = await axios.post(
+        `http://localhost:8000/api/v1/product/create-product`,
+        productData
+      );
+      if (data?.success) {
+        toast({
+          title: `Product Created Success`,
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+          variant: "top-accent",
+        });
+        navigate("/dashboard/admin/products");
+      } else {
+        toast({
+          title: `${data?.message}`,
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+          variant: "top-accent",
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      toast({
+        title: `Error in Create Product`,
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+        variant: "top-accent",
+      });
+    }
+  };
 
   console.log(categories);
   return (
