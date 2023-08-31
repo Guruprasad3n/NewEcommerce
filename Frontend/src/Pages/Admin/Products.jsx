@@ -26,6 +26,31 @@ import {
 
 function Products() {
  
+  const toast = useToast();
+  const [products, setProducts] = useState([]);
+  const getAllProducts = async () => {
+    try {
+      const res = await axios.get(
+        `http://localhost:8000/api/v1/product/get-products`
+      );
+      setProducts(res.data.products);
+    } catch (error) {
+      console.log(error);
+      toast({
+        title: `Error in Getting All Products`,
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+        variant: "top-accent",
+      });
+    }
+  };
+  useEffect(() => {
+    getAllProducts();
+  }, []);
+  console.log(products);
+
+  
 
   return (
     <>
