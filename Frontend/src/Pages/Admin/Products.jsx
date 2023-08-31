@@ -67,7 +67,40 @@ function Products() {
 <div className="d-flex align-items-center justify-content-center ">
 
         {/* <Flex direction="row" flexWrap="wrap" justifyContent="space-between" gap={"10px"} > */}
-        
+        <SimpleGrid
+          columns={{ base: 1, sm: 2, md: 3, lg: 4 }}
+          spacing={6}
+        >
+          {products?.map((e) => (
+            <Card key={e._id} borderWidth="1px" borderRadius="lg">
+              <CardBody>
+                <Image src={e.photo} alt={e.name} borderRadius="lg" />
+                <Stack mt="3" spacing="1">
+                  <Heading size="md" as="h2">
+                    {e.name}
+                  </Heading>
+                  <Text fontSize="sm" color="gray.600">
+                    {e.description}
+                  </Text>
+                  <Text color="blue.600" fontSize="lg">
+                    {`${e.price}`}
+                  </Text>
+                </Stack>
+              </CardBody>
+              <Divider />
+              <CardFooter>
+                <ButtonGroup spacing="2">
+                  <Button variant="solid" colorScheme="blue">
+                    Buy now
+                  </Button>
+                  <Button variant="ghost" colorScheme="blue">
+                    Add to cart
+                  </Button>
+                </ButtonGroup>
+              </CardFooter>
+            </Card>
+          ))}
+        </SimpleGrid>
           </div>
 
         {/* <SimpleGrid columns={4} spacingX="40px" spacingY="20px">
