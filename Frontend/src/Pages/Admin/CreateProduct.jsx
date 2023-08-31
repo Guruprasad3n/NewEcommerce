@@ -72,7 +72,7 @@ function CreateProduct() {
       } else {
         toast({
           title: `${data?.message}`,
-          status: "success",
+          status: "error",
           duration: 3000,
           isClosable: true,
           variant: "top-accent",

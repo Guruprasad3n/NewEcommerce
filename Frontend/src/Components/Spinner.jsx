@@ -2,7 +2,7 @@ import { Button, Container, Flex, Spinner, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 function SpinnerComponent({path ="login"}) {
-  const [count, setCount] = useState(3);
+  const [count, setCount] = useState(1);
 
   const navigate = useNavigate();
   const location = useLocation()
