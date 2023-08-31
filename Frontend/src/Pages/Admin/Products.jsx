@@ -66,6 +66,7 @@ function Products() {
 
 <div className="d-flex align-items-center justify-content-center ">
 
+        
         {/* <Flex direction="row" flexWrap="wrap" justifyContent="space-between" gap={"10px"} > */}
         <SimpleGrid
           columns={{ base: 1, sm: 2, md: 3, lg: 4 }}
