@@ -54,7 +54,9 @@ function Products() {
 
   return (
     <>
-     PRoducts
+    <Layout title={"Products Dashboard - Guru's Commerce"}>
+  
+</Layout>
     </>
   );
 }
