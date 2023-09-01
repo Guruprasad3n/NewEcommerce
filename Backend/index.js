@@ -4,8 +4,7 @@ import cors from "cors";
 import connectDB from "./Config/db.js";
 import authRoute from "./Routes/authRoute.js";
 import categoryRoute from "./Routes/CategoryRoute.js";
-import productRouter from "./Routes/ProductRoute.js"
-
+import productRouter from "./Routes/ProductRoute.js";
 
 const app = express();
 app.use(cors());
@@ -25,7 +24,7 @@ const PORT = process.env.PORT || 8080;
 
 app.use("/api/v1/auth", authRoute);
 app.use("/api/v1/category", categoryRoute);
-app.use("/api/v1/product",  productRouter);
+app.use("/api/v1/product", productRouter);
 
 app.get("/", (req, res) => {
   res.send("Welcome to Home Page");
