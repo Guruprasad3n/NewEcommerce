@@ -89,7 +89,7 @@ export const loginController = async (req, res) => {
         phone: user.phone,
         address: user.address,
         role: user.role,
-        _id:user._id
+        _id: user._id,
       },
       token,
     });
@@ -139,13 +139,12 @@ export const forgotPasswordController = async (req, res) => {
 };
 
 export const testController = (req, res) => {
- try{
-  res.send("Protected Route");
- }
- catch(error){
-  console.log(error)
-  res.send(error)
- }
+  try {
+    res.send("Protected Route");
+  } catch (error) {
+    console.log(error);
+    res.send(error);
+  }
 };
 
 export const userAuthController = (req, res) => {
