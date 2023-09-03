@@ -5,7 +5,7 @@ import {
   getSingleProductsController,
   getProductPhotoContorller,
   deleteProductController,
-  updateProductController
+  updateProductController,
 } from "../Controllers/ProductController.js";
 import { isAdmin, requireSignIn } from "../Middlewares/authMiddleware.js";
 
