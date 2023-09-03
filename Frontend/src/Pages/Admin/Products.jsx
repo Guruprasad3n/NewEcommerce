@@ -66,9 +66,13 @@ function Products() {
                 >
                   {products?.map((e) => (
                     <Card key={e._id} borderWidth="1px" borderRadius="lg">
-                        <Link  to={`/dashboard/admin/product/${e.slug}`}>
+                      <Link to={`/dashboard/admin/product/${e.slug}`}>
                         <CardBody>
-                          <Image src={`http://localhost:8000/api/v1/product/product-photo/${e._id}`} alt={e.name} borderRadius="lg" />
+                          <Image
+                            src={`http://localhost:8000/api/v1/product/product-photo/${e._id}`}
+                            alt={e.name}
+                            borderRadius="lg"
+                          />
                           <Stack mt="3" spacing="1">
                             <Heading size="md" as="h2">
                               {e.name}
@@ -81,19 +85,19 @@ function Products() {
                             </Text>
                           </Stack>
                         </CardBody>
-                    </Link>
-                        <Divider />
-                        <CardFooter>
-                          <ButtonGroup spacing="2">
-                            <Button variant="solid" colorScheme="blue">
-                              Buy now
-                            </Button>
-                            <Button variant="ghost" colorScheme="blue">
-                              Add to cart
-                            </Button>
-                          </ButtonGroup>
-                        </CardFooter>
-                      </Card>
+                      </Link>
+                      <Divider />
+                      <CardFooter>
+                        <ButtonGroup spacing="2">
+                          <Button variant="solid" colorScheme="blue">
+                            Buy now
+                          </Button>
+                          <Button variant="ghost" colorScheme="blue">
+                            Add to cart
+                          </Button>
+                        </ButtonGroup>
+                      </CardFooter>
+                    </Card>
                   ))}
                 </SimpleGrid>
               </div>
