@@ -103,14 +103,6 @@ function Products() {
           ))}
         </SimpleGrid>
           </div>
-
-        {/* <SimpleGrid columns={4} spacingX="40px" spacingY="20px">
-          <Box bg="tomato" height="80px"></Box>
-          <Box bg="tomato" height="80px"></Box>
-          <Box bg="tomato" height="80px"></Box>
-          <Box bg="tomato" height="80px"></Box>
-          <Box bg="tomato" height="80px"></Box>
-        </SimpleGrid> */}
       </div>
     </div>
   </div>
