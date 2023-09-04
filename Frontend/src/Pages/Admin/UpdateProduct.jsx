@@ -54,7 +54,6 @@ function UpdateProduct() {
         productData.append("quantity", quantity);
         productData.append("category", category);
         productData.append("photo", photo);
-        // productData.append('name', name)
         const { data } = await axios.post(
           `http://localhost:8000/api/v1/product/create-product`,
           productData
