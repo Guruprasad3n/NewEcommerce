@@ -16,16 +16,6 @@ function UpdateProduct() {
   
     const toast = useToast();
     const navigate = useNavigate();
-  
-    // toast({
-    //   title: `${updatedCName} is Updated`,
-    //   status: "success",
-    //   duration: 3000,
-    //   isClosable: true,
-    //   variant: "top-accent",
-    // });
-  
-    // Get All Categories Copied From Category.jsx
     const getAllCategories = async () => {
       try {
         const { data } = await axios.get(
