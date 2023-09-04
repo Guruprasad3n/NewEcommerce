@@ -1,6 +1,9 @@
-import { Button, Select } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
+import { Button, Select, useToast } from "@chakra-ui/react";
 import Layout from "../../Components/Layout/Layout";
 import AdminMenu from "../../Components/Layout/AdminMenu";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function UpdateProduct() {
   const [categories, setCategories] = useState([]);
@@ -12,7 +15,6 @@ function UpdateProduct() {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
 
-  
   const toast = useToast();
   const navigate = useNavigate();
   const getAllCategories = async () => {
