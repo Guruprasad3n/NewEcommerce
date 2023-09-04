@@ -3,99 +3,79 @@ import Layout from "../../Components/Layout/Layout";
 import AdminMenu from "../../Components/Layout/AdminMenu";
 
 function UpdateProduct() {
+  const [categories, setCategories] = useState([]);
+  const [photo, setPhoto] = useState("");
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [shipping, setShipping] = useState("");
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("");
 
-    const [categories, setCategories] = useState([]);
-    const [photo, setPhoto] = useState("");
-    const [name, setName] = useState("");
-    const [price, setPrice] = useState("");
-    const [quantity, setQuantity] = useState("");
-    const [shipping, setShipping] = useState("");
-    const [description, setDescription] = useState("");
-    const [category, setCategory] = useState("");
-    // const[photo, setPhoto] = useState("")
   
-    const toast = useToast();
-    const navigate = useNavigate();
-    const getAllCategories = async () => {
-      try {
-        const { data } = await axios.get(
-          "http://localhost:8000/api/v1/category/get-all-category"
-        );
-        if (data?.success) {
-          setCategories(data?.category);
-        }
-      } catch (error) {
-        console.log(error);
-        toast({
-          title: "Error",
-        });
+  const toast = useToast();
+  const navigate = useNavigate();
+  const getAllCategories = async () => {
+    try {
+      const { data } = await axios.get(
+        "http://localhost:8000/api/v1/category/get-all-category"
+      );
+      if (data?.success) {
+        setCategories(data?.category);
       }
-    };
-    useEffect(() => {
-      getAllCategories();
-    }, []);
-  
-    const handleCreateProduct = async (e) => {
-      try {
-        const productData = new FormData();
-        productData.append("name", name);
-        productData.append("price", price);
-        productData.append("description", description);
-        productData.append("quantity", quantity);
-        productData.append("category", category);
-        productData.append("photo", photo);
-        const { data } = await axios.post(
-          `http://localhost:8000/api/v1/product/create-product`,
-          productData
-        );
-        if (data?.success) {
-          toast({
-            title: `Product Created Success`,
-            status: "success",
-            duration: 3000,
-            isClosable: true,
-            variant: "top-accent",
-          });
-          navigate("/dashboard/admin/products");
-        } else {
-          toast({
-            title: `${data?.message}`,
-            status: "error",
-            duration: 3000,
-            isClosable: true,
-            variant: "top-accent",
-          });
-        }
-      } catch (error) {
-        console.log(error);
+    } catch (error) {
+      console.log(error);
+      toast({
+        title: "Error",
+      });
+    }
+  };
+  useEffect(() => {
+    getAllCategories();
+  }, []);
+
+  const handleCreateProduct = async (e) => {
+    try {
+      const productData = new FormData();
+      productData.append("name", name);
+      productData.append("price", price);
+      productData.append("description", description);
+      productData.append("quantity", quantity);
+      productData.append("category", category);
+      productData.append("photo", photo);
+      const { data } = await axios.post(
+        `http://localhost:8000/api/v1/product/create-product`,
+        productData
+      );
+      if (data?.success) {
         toast({
-          title: `Error in Create Product`,
+          title: `Product Created Success`,
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+          variant: "top-accent",
+        });
+        navigate("/dashboard/admin/products");
+      } else {
+        toast({
+          title: `${data?.message}`,
           status: "error",
           duration: 3000,
           isClosable: true,
           variant: "top-accent",
         });
       }
-    };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    } catch (error) {
+      console.log(error);
+      toast({
+        title: `Error in Create Product`,
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+        variant: "top-accent",
+      });
+    }
+  };
 
   return (
     <Layout>
