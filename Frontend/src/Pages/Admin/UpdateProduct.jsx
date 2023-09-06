@@ -41,6 +41,7 @@ function UpdateProduct() {
 
   useEffect(() => {
     getSingleProduct();
+    // 
   }, []);
 
   const getAllCategories = async () => {
