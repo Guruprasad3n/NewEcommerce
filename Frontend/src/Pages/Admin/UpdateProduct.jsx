@@ -21,7 +21,24 @@ function UpdateProduct() {
 
   // Get Single Product
 
- 
+  const getSingleProduct = () => {
+    try {
+      const { data } = axios.get(
+        `http://localhost:8000/api/v1/product/get-product/${params.slug}`
+      );
+      setName(data.product.name);
+    } catch (error) {
+      console.log(error);
+      toast({
+        title: `Error`,
+        status: "error",
+          duration: 3000,
+          isClosable: true,
+          variant:"subtle",
+      });
+    }
+  };
+
 
   const getAllCategories = async () => {
     try {
