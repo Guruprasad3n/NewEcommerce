@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Select, useToast } from "@chakra-ui/react";
 import Layout from "../../Components/Layout/Layout";
 import AdminMenu from "../../Components/Layout/AdminMenu";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 function UpdateProduct() {
@@ -17,6 +17,12 @@ function UpdateProduct() {
 
   const toast = useToast();
   const navigate = useNavigate();
+  const params = useParams();
+
+  // Get Single Product
+
+ 
+
   const getAllCategories = async () => {
     try {
       const { data } = await axios.get(
@@ -34,6 +40,7 @@ function UpdateProduct() {
   };
   useEffect(() => {
     getAllCategories();
+    // getSingleProduct()
   }, []);
 
   const handleCreateProduct = async (e) => {
@@ -79,6 +86,7 @@ function UpdateProduct() {
     }
   };
 
+ 
   return (
     <Layout>
       <div className="container-fluid m-3 p-3">
@@ -87,7 +95,7 @@ function UpdateProduct() {
             <AdminMenu />
           </div>
           <div className="col-md-9">
-            <h1>Create Product</h1>
+            <h1>Update Product</h1>
             <div className="m-1 w-75">
               <Select
                 outline={"none"}
@@ -183,7 +191,7 @@ function UpdateProduct() {
                 </Select>
               </div>
               <div className="mb-3">
-                <Button onClick={handleCreateProduct}>Create Product</Button>
+                <Button onClick={handleCreateProduct}>Update Product</Button>
               </div>
             </div>
           </div>
