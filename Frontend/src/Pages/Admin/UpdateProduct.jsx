@@ -41,7 +41,7 @@ function UpdateProduct() {
 
   useEffect(() => {
     getSingleProduct();
-    // 
+    // eslint
   }, []);
 
   const getAllCategories = async () => {
