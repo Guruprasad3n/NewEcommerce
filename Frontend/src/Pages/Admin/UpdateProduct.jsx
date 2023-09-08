@@ -32,9 +32,9 @@ function UpdateProduct() {
       toast({
         title: `Error`,
         status: "error",
-          duration: 3000,
-          isClosable: true,
-          variant:"subtle",
+        duration: 3000,
+        isClosable: true,
+        variant: "subtle",
       });
     }
   };
@@ -107,7 +107,6 @@ function UpdateProduct() {
     }
   };
 
- 
   return (
     <Layout>
       <div className="container-fluid m-3 p-3">
