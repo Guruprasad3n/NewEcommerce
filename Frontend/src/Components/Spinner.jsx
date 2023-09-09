@@ -1,16 +1,16 @@
 import { Button, Container, Flex, Spinner, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-function SpinnerComponent({path ="login"}) {
+function SpinnerComponent({ path = "login" }) {
   const [count, setCount] = useState(1);
 
   const navigate = useNavigate();
-  const location = useLocation()
+  const location = useLocation();
   useEffect(() => {
     const intervel = setInterval(() => {
       setCount((prevValue) => --prevValue);
     }, 1000);
-    count === 0 && navigate(`/${path}`, {state : location.pathname});
+    count === 0 && navigate(`/${path}`, { state: location.pathname });
     return () => clearInterval(intervel);
   }, [count, navigate, location, path]);
 
@@ -31,7 +31,10 @@ function SpinnerComponent({path ="login"}) {
             justifyContent={"center"}
           >
             <Text fontSize={"2xl"}>
-              Don't Wait <NavLink style={{color:"orange"}} to="/login">Login</NavLink>{" "}
+              Don't Wait{" "}
+              <NavLink style={{ color: "orange" }} to="/login">
+                Login
+              </NavLink>{" "}
             </Text>
           </Flex>
         </Container>
@@ -42,7 +45,6 @@ function SpinnerComponent({path ="login"}) {
           color="blue.500"
           size="xl"
         />
-       
       </Flex>
       {/* <div className="d-flex justify-content-center">
   <div className="spinner-border" role="status">
