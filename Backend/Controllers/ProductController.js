@@ -70,7 +70,7 @@ export const getAllProductsController = async (req, res) => {
 export const getSingleProductsController = async (req, res) => {
   try {
     const product = await productModal
-      .findOne({ slig: req.params.slug })
+      .findOne({ slug: req.params.slug })
       .select("-photo")
       .populate("category");
     res.status(200).send({

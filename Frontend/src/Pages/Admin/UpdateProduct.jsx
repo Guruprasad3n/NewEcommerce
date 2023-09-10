@@ -30,7 +30,7 @@ function UpdateProduct() {
     } catch (error) {
       console.log(error);
       toast({
-        title: `Error`,
+        title: `${error}`,
         status: "error",
         duration: 3000,
         isClosable: true,
@@ -41,7 +41,7 @@ function UpdateProduct() {
 
   useEffect(() => {
     getSingleProduct();
-    // eslint
+    // eslint-disable-next-line
   }, []);
 
   const getAllCategories = async () => {
