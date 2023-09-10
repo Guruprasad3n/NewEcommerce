@@ -21,9 +21,9 @@ function UpdateProduct() {
 
   // Get Single Product
 
-  const getSingleProduct = () => {
+  const getSingleProduct = async() => {
     try {
-      const { data } = axios.get(
+      const { data } =await axios.get(
         `http://localhost:8000/api/v1/product/get-product/${params.slug}`
       );
       setName(data.product.name);
