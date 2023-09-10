@@ -14,6 +14,7 @@ function UpdateProduct() {
   const [shipping, setShipping] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
+  const [id, setId] = useState("");
 
   const toast = useToast();
   const navigate = useNavigate();
@@ -27,6 +28,10 @@ function UpdateProduct() {
         `http://localhost:8000/api/v1/product/get-product/${params.slug}`
       );
       setName(data.product.name);
+      setId(data.product._id);
+      setDescription(data.product.description);
+      setPrice(data.product.price);
+      setQuantity(data.product.quantity);
     } catch (error) {
       console.log(error);
       toast({
@@ -203,7 +208,9 @@ function UpdateProduct() {
                   className="form-select mb-3"
                   onChange={(value) => {
                     setShipping(value);
+                    console.log(value)
                   }}
+                  value={shipping ? "Yes" : "No"}
                 >
                   <option value="0">No</option>
                   <option value="1">Yes</option>
