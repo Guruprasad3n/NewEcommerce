@@ -208,7 +208,7 @@ function UpdateProduct() {
                   className="form-select mb-3"
                   onChange={(value) => {
                     setShipping(value);
-                    console.log(value)
+                    console.log(value);
                   }}
                   value={shipping ? "Yes" : "No"}
                 >
