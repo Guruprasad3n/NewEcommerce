@@ -217,6 +217,7 @@ function UpdateProduct() {
                 </Select>
               </div>
               <div className="mb-3">
+              {/*  */}
                 <Button onClick={handleCreateProduct}>Update Product</Button>
               </div>
             </div>
