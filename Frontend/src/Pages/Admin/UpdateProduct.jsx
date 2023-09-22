@@ -32,6 +32,7 @@ function UpdateProduct() {
       setDescription(data.product.description);
       setPrice(data.product.price);
       setQuantity(data.product.quantity);
+      setQuantity(data.product.photo);
     } catch (error) {
       console.log(error);
       toast({
