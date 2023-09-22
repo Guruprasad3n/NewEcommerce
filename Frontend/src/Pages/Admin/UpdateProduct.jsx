@@ -154,6 +154,7 @@ function UpdateProduct() {
                 {photo && (
                   <div className="text-center">
                     <img
+                      onChange={(e) => setPhoto(e.target.value)}
                       src={URL.createObjectURL(photo)}
                       alt="product_photo"
                       height={"200px"}
@@ -218,7 +219,7 @@ function UpdateProduct() {
                 </Select>
               </div>
               <div className="mb-3">
-              {/*  */}
+                {/*  */}
                 <Button onClick={handleCreateProduct}>Update Product</Button>
               </div>
             </div>
